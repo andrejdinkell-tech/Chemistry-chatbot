@@ -6,7 +6,6 @@ import re
 
 app = FastAPI()
 
-# Чтобы index.html мог отправлять запросы
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -19,7 +18,7 @@ class ChatRequest(BaseModel):
     message: str
 
 
-# -------- ЛОГИКА --------
+
 
 def extract_formula(text: str):
     match = re.search(r'([A-Z][a-z]?\d*)+', text.replace(" ", ""))
@@ -70,7 +69,7 @@ def solve(text: str):
     return "⚠ Тип задачи не распознан."
 
 
-# -------- API --------
+
 
 @app.post("/chat")
 async def chat(req: ChatRequest):
