@@ -116,7 +116,7 @@
 
   <div id="settings">
     <label for="server-url">Адрес сервера (serveо / pinggy / localhost):</label><br>
-    <input id="server-url" type="text" placeholder="https://xxxx.serveousercontent.com или http://bore.pub:xxxxx">
+    <input id="server-url" type="text" placeholder="https://chemistry-chatbot-1-ph95.onrender.com">
   </div>
 
   <div id="chat-container">
@@ -135,11 +135,11 @@
     const sendBtn = document.getElementById("send-btn");
     const clearBtn = document.getElementById("clear-btn");
 
-    // Восстанавливаем сохранённый адрес сервера
+  
     const savedUrl = localStorage.getItem("chemistryBotServerUrl");
     if (savedUrl) serverUrlInput.value = savedUrl;
 
-    // Сохраняем адрес при изменении
+
     serverUrlInput.addEventListener("change", () => {
       localStorage.setItem("chemistryBotServerUrl", serverUrlInput.value.trim());
     });
@@ -151,7 +151,7 @@
       div.textContent = text;
       chat.appendChild(div);
       chat.scrollTop = chat.scrollHeight;
-      return div; // возвращаем элемент, чтобы можно было обновить loading
+      return div;
     }
 
     function clearChat() {
@@ -196,5 +196,22 @@
         console.error(err);
       }
 
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    // События
+    sendBtn.addEventListener("click", send);
+    input.addEventListener("keypress", e => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        send();
+      }
+    });
+
+    clearBtn.addEventListener("click", clearChat);
+  </script>
+
+</body>
+</html>
       chat.scrollTop = chat.scrollHeight;
     }
